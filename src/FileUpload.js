@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FileUpload({ files, setFiles, handleClick }) {
+function FileUpload({ files, setFiles, handleClick, fileIndex }) {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -23,9 +23,16 @@ function FileUpload({ files, setFiles, handleClick }) {
         onChange={handleFileChange}
         multiple
       />
-      <ul>
+      <ul style={{cursor:'pointer'}}>
         {files.map((file, i) => (
-          <li key={i} onClick={() => handleClick(i)}>
+          <li key={i} onClick={() => handleClick(i)} 
+          style={{
+            backgroundColor: i === fileIndex ? 'rgba(0, 0, 0, 0.8)' : 'transparent', 
+            padding: '8px',
+            margin: '4px 0',
+            borderRadius:'5px', 
+            color:i === fileIndex ? 'white' : 'black',
+          }}>
             {file.name}
           </li>
         ))}

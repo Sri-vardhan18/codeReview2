@@ -16,21 +16,13 @@ function App() {
     
   };
 
-  
+
   const handleCommentSubmit = (lineIndex, comment) => {
-    if (!comments[fileIndex]) {
-      setComments((prev) => ({ ...prev, [fileIndex]: [] }));
-    }
     setComments((prevComments) => ({
       ...prevComments,
-      [fileIndex]: [
-        ...prevComments[fileIndex],
-        { lineIndex, comment },
-      ],
+      [fileIndex]: [...(prevComments[fileIndex] || []), { lineIndex, comment }],
     }));
-  }; 
-
-  
+  };
 
   return (
     <div className="container">
@@ -40,13 +32,14 @@ function App() {
           <FileUpload
             files={files}
             setFiles={setFiles}
-            handleClick={handleClick}
+            handleClick={handleClick} 
+            fileIndex={fileIndex}
           />
         </div>
 
         <div className="main">
           <div>
-          <CodeBox file={files[fileIndex]?.content}  />
+          <CodeBox file={files[fileIndex]?.content}  handleCommentSubmit={handleCommentSubmit} />
           </div>
           <div>
           
