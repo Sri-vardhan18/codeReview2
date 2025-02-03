@@ -62,7 +62,7 @@ function CodeBox({ file, handleCommentSubmit }) {
 
       return () => view.destroy();
     }
-  }, [file]);
+  }, [file,plusIconPlugin]);
 
   return (
     <div className="codemirror-container">
